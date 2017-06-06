@@ -28,8 +28,19 @@
 }
 
 .playerScore {
-    color: darkgray;
+    color: red;
     background-color: transparent;
     text-align: center;
     width: 100%;
+    margin-top: -17px;
+    margin-left: -30px;
+    font-style: italic;
+}
+
+.playerTotal {
+    font-weight: bold;
+    margin-top: -10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    color: dimgray
 }

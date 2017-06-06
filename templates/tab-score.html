@@ -10,9 +10,7 @@
         </div>
     </ion-nav-buttons>
 
-
     <ion-content>
-
         <div class="item item-divider">
             <div class="row">
 
@@ -34,7 +32,7 @@
         </div>
 
         <!-- round -->
-        <div class="item" ng-repeat="round in scoreVM.nbRound">
+        <div class="item" ng-repeat="round in scoreVM.nbRound" ng-show="round !== 0" style="padding-top:0px;padding-bottom:0px">
             <div class="row">
                 <div class="col col-center col-10">
                     {{$index}}
@@ -42,10 +40,13 @@
 
                 <!-- player score -->
                 <div ng-repeat="player in scoreVM.playerList track by player.avatar" class="col" style="text-align:center">
-                    <!-- current score -->
-                    <input class="playerScore" type="text" ng-model="scoreVM.playerList[player.num].score[round].point" ng-change="scoreVM.updateScore(round,player.num)">
-                    <!-- total score -->
-
+                    <div align="center">
+                        <!-- current score -->
+                        <input class="playerScore" type="number" ng-model="scoreVM.playerList[player.num].score[round].point" ng-change="scoreVM.updateScore(round,player.num)" style="color:lightgrey">
+                        <!-- total score -->
+                        <div class="playerTotal">{{scoreVM.playerList[player.num].score[round].total}}
+                        </div>
+                    </div>
                 </div>
                 <!-- empty or last player -->
                 <div ng-if=" scoreVM.playerList.length < 3 " class="col col-center" style="text-align:center ">
@@ -56,9 +57,9 @@
         </div>
 
         <!-- addround button -->
-        <div style="margin:5px 20px 5px 20px ">
+        <div style="margin:5px 20px 5px 20px " ng-if="scoreVM.playerList.length>0">
             <button class="button button-outline button-block button-stable " ng-click="scoreVM.addRound() ">
-                new round
+                add round
             </button>
         </div>
 
