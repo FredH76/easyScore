@@ -1,0 +1,66 @@
+<ion-view view-title="Score Board">
+    <!-- CONFIG BUTTON (in Nav Bar)-->
+    <ion-nav-buttons side="secondary">
+        <div class="buttons">
+
+            <!-- RESET BUTTON -->
+            <button class="button button-stable button-outline " ng-click="scoreVM.reset()">
+                &nbsp; Reset &nbsp;
+            </button>
+        </div>
+    </ion-nav-buttons>
+
+
+    <ion-content>
+
+        <div class="item item-divider">
+            <div class="row">
+
+                <div class="col col-center col-10">
+                </div>
+
+                <div ng-repeat="item in scoreVM.playerList" class="col" style="text-align:center">
+                    <img class="playerHeader" ng-src="img/{{item.avatar}}" width="70px" on-hold="scoreVM.deletePlayer(item,$index)">
+                    <br>
+                    <input class="playerName" type="text" placeholder="{{item.name}}" ng-model="item.name">
+                </div>
+
+                <!-- Add NEW PLAYER -->
+                <div ng-if="scoreVM.playerList.length < 3 " class="col col-center " ng-click="scoreVM.addPlayer() " style="text-align:center ">
+                    <img class="playerHeader " ng-src="img/add_player.jpg " width="70px">
+                    <input class="playerName" type="text" placeholder="add player" style="background-color:transparent">
+                </div>
+            </div>
+        </div>
+
+        <!-- round -->
+        <div class="item" ng-repeat="round in scoreVM.nbRound">
+            <div class="row">
+                <div class="col col-center col-10">
+                    {{$index}}
+                </div>
+
+                <!-- player score -->
+                <div ng-repeat="player in scoreVM.playerList track by player.avatar" class="col" style="text-align:center">
+                    <!-- current score -->
+                    <input class="playerScore" type="text" ng-model="scoreVM.playerList[player.num].score[round].point" ng-change="scoreVM.updateScore(round,player.num)">
+                    <!-- total score -->
+
+                </div>
+                <!-- empty or last player -->
+                <div ng-if=" scoreVM.playerList.length < 3 " class="col col-center" style="text-align:center ">
+                    &nbsp;
+                </div>
+
+            </div>
+        </div>
+
+        <!-- addround button -->
+        <div style="margin:5px 20px 5px 20px ">
+            <button class="button button-outline button-block button-stable " ng-click="scoreVM.addRound() ">
+                new round
+            </button>
+        </div>
+
+    </ion-content>
+</ion-view>
