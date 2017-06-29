@@ -44,3 +44,11 @@
     font-size: 20px;
     color: dimgray
 }
+
+.ion-content-fixed-header {
+    margin-top: 43px;
+}
+
+.ion-content-below-fixed-header {
+    margin-top: 133px;
+}

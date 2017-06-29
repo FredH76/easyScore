@@ -1,27 +1,37 @@
 angular.module('app.controllers')
 
-.controller('scoreCtrl', function (playerFactory) {
+.controller('score-sheetCtrl', function ($stateParams, $ionicHistory, playerFactory) {
     var vm = this;
 
     vm.playerList = [];
     vm.nbRound = [];
+    vm.curGame = null;
 
     /******************************      FUNCTION DECLARATION            ************************/
-    vm.reset = reset;
-    vm.addPlayer = addPlayer;
-    vm.deletePlayer = deletePlayer;
+    vm.goBack = goBack;
+    //vm.addPlayer = addPlayer;
+    //vm.deletePlayer = deletePlayer;
     vm.addRound = addRound;
     vm.updateScore = updateScore;
-    vm.nbRound = [];
+    vm.resetScore = resetScore;
 
     /******************************         INITIALISATION               ************************/
-    reset();
+    vm.curGame = $stateParams.gameType;
+    vm.playerList = $stateParams.playerList;
+    resetScore();
 
     /********************************************************************************************/
     /*                              PUBLIC FUNCTIONS DECLARATION
     /********************************************************************************************/
 
-    /******************************         ADD NEW PLAYER               ************************/
+    /*********************          Go back                                        *****************/
+    function goBack() {
+        $backView = $ionicHistory.backView();
+        $backView.go();
+    }
+
+
+    /******************************         ADD NEW PLAYER               ************************
     function addPlayer() {
         var player = new playerFactory.Player("player_" + vm.playerList.length);
         var randomIndex = Math.floor(Math.random() * (avatarList.length));
@@ -39,7 +49,7 @@ angular.module('app.controllers')
             vm.playerList[player.num].score[round].point = 0;
             vm.playerList[player.num].score[round].total = 0;
         }
-    }
+    }*/
 
     /******************************         DELETE PLAYER         *******************************/
     function deletePlayer(item, index) {
@@ -79,21 +89,16 @@ angular.module('app.controllers')
 
 
     /******************************         CLEAR ROUND                *************************/
-    function reset() {
-        vm.playerList = [];
+    function resetScore() {
         vm.nbRound = [];
         vm.nbRound[0] = 0;
-        avatarList = ["avatar1.jpg",
-                    "avatar2.jpg",
-                    "avatar3.jpg",
-                    "avatar4.jpg",
-                    "avatar5.jpg",
-                    "avatar6.jpg",
-                    "avatar7.jpg",
-                    "avatar8.jpg",
-                    "avatar9.jpg",
-                    "avatar10.jpg",
-                    "avatar11.jpg"];
+
+        // create empty score for round 0
+        for (var playerNum = 0; playerNum < vm.playerList.length; playerNum++) {
+            vm.playerList[playerNum].score[0] = {};
+            vm.playerList[playerNum].score[0].point = 0;
+            vm.playerList[playerNum].score[0].total = 0;
+        }
     }
 
 });

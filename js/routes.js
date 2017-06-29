@@ -18,7 +18,7 @@ angular.module('app.routes', [])
         views: {
             'tab-home': {
                 templateUrl: 'templates/tab-home.html',
-                controller: 'homeCtrl'
+                controller: 'tab-homeCtrl'
             }
         }
     })
@@ -28,8 +28,8 @@ angular.module('app.routes', [])
         views: {
             'tab-score': {
                 templateUrl: 'templates/tab-score.html',
-                controller: 'scoreCtrl',
-                controllerAs: 'scoreVM'
+                controller: 'tab-scoreCtrl',
+                controllerAs: 'tabScrVM'
             }
         }
     })
@@ -52,7 +52,22 @@ angular.module('app.routes', [])
                 controller: 'ChatDetailCtrl'
             }
         }
+    })
+
+    .state('score-sheet', {
+        cache: false,
+        url: '/scoring',
+        templateUrl: 'templates/score-sheet.html',
+        controller: 'score-sheetCtrl',
+        controllerAs: 'scrVM',
+        params: {
+            gameType: GAME_LIST[0],
+            playerList: [],
+        }
+
     });
+
+
 
     $urlRouterProvider.otherwise(function ($injector, $location) {
         var $state = $injector.get("$state");

@@ -1,6 +1,6 @@
 angular.module('app.controllers', [])
 
-.controller('homeCtrl', function ($scope, $state) {
+.controller('tab-homeCtrl', function ($scope, $state) {
 
     $scope.openNewScoreBoard = function () {
         $state.go('tab.score');

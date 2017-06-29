@@ -3,63 +3,43 @@
     <ion-nav-buttons side="secondary">
         <div class="buttons">
 
-            <!-- RESET BUTTON -->
-            <button class="button button-stable button-outline " ng-click="scoreVM.reset()">
+            <!-- RESET BUTTON 
+            <button class="button button-stable button-outline " ng-click="tabScrVM.reset()">
                 &nbsp; Reset &nbsp;
-            </button>
+            </button>-->
         </div>
     </ion-nav-buttons>
 
     <ion-content>
-        <div class="item item-divider">
-            <div class="row">
 
-                <div class="col col-center col-10">
+        <!-- SELECT TYPE OF GAME  -->
+        <div class="item item-select" style="height:80px">
+            <div class="row row-center">
+                <div class="col col_50">
+                    Type of Game :
                 </div>
-
-                <div ng-repeat="item in scoreVM.playerList" class="col" style="text-align:center">
-                    <img class="playerHeader" ng-src="img/{{item.avatar}}" width="70px" on-hold="scoreVM.deletePlayer(item,$index)">
-                    <br>
-                    <input class="playerName" type="text" placeholder="{{item.name}}" ng-model="item.name">
-                </div>
-
-                <!-- Add NEW PLAYER -->
-                <div ng-if="scoreVM.playerList.length < 3 " class="col col-center " ng-click="scoreVM.addPlayer() " style="text-align:center ">
-                    <img class="playerHeader " ng-src="img/add_player.jpg " width="70px">
-                    <input class="playerName" type="text" placeholder="add player" style="background-color:transparent">
+                <div class="col col_50">
+                    <select ng-model="tabScrVM.selGame" ng-options="game.name for game in tabScrVM.gameList" style="font-size:17px">
+                    </select>
                 </div>
             </div>
         </div>
 
-        <!-- round -->
-        <div class="item" ng-repeat="round in scoreVM.nbRound" ng-show="round !== 0" style="padding-top:0px;padding-bottom:0px">
-            <div class="row">
-                <div class="col col-center col-10">
-                    {{$index}}
-                </div>
-
-                <!-- player score -->
-                <div ng-repeat="player in scoreVM.playerList track by player.avatar" class="col" style="text-align:center">
-                    <div align="center">
-                        <!-- current score -->
-                        <input class="playerScore" type="number" ng-model="scoreVM.playerList[player.num].score[round].point" ng-change="scoreVM.updateScore(round,player.num)" style="color:lightgrey">
-                        <!-- total score -->
-                        <div class="playerTotal">{{scoreVM.playerList[player.num].score[round].total}}
-                        </div>
-                    </div>
-                </div>
-                <!-- empty or last player -->
-                <div ng-if=" scoreVM.playerList.length < 3 " class="col col-center" style="text-align:center ">
-                    &nbsp;
-                </div>
-
+        <!-- SELECT NB PLAYER  -->
+        <div class="item item-select" style="height:80px">
+            <div class="col col_50">
+                Nb of Players :
+            </div>
+            <div class="col col_50">
+                <select ng-model="tabScrVM.nbPlayer" ng-options="num for num in tabScrVM.nbPlayerList" style="font-size:17px">
+                </select>
             </div>
         </div>
 
-        <!-- addround button -->
-        <div style="margin:5px 20px 5px 20px " ng-if="scoreVM.playerList.length>0">
-            <button class="button button-outline button-block button-stable " ng-click="scoreVM.addRound() ">
-                add round
+        <!-- START SCORING BUTTON -->
+        <div style="margin:5px 20px 5px 20px ">
+            <button class="button button-outline button-block button-stable " style="color:black" ng-click="tabScrVM.startScoring() ">
+                start scoring
             </button>
         </div>
 
