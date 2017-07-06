@@ -54,10 +54,10 @@
                 </div>
 
                 <!-- player score -->
-                <div ng-repeat="player in scrVM.playerList track by player.avatar" class="col" style="text-align:center">
+                <div ng-repeat="player in scrVM.playerList track by player.avatar" class="col" style="text-align:center" ng-click=scrVM.setFocus(round,player.num)>
                     <div align="center">
                         <!-- current score -->
-                        <input class="playerScore" type="number" ng-model="scrVM.playerList[player.num].score[round].point" ng-change="scrVM.updateScore(round,player.num)" style="color:lightgrey">
+                        <input id="{{round+'_'+player.num}}" class="playerScore" type="number" ng-model="scrVM.playerList[player.num].score[round].point" ng-change="scrVM.updateScore(round,player.num)" style="color:lightgrey">
                         <!-- total score -->
                         <div class="playerTotal">{{scrVM.playerList[player.num].score[round].total}}
                         </div>

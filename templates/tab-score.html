@@ -13,7 +13,7 @@
     <ion-content>
 
         <!-- SELECT TYPE OF GAME  -->
-        <div class="item item-select" style="height:80px">
+        <div ng-if="tabScrVM.newGame == true" class="item item-select" style="height:80px">
             <div class="row row-center">
                 <div class="col col_50">
                     Type of Game :
@@ -26,7 +26,7 @@
         </div>
 
         <!-- SELECT NB PLAYER  -->
-        <div class="item item-select" style="height:80px">
+        <div ng-if="tabScrVM.newGame == true" class="item item-select" style="height:80px">
             <div class="col col_50">
                 Nb of Players :
             </div>
@@ -36,10 +36,11 @@
             </div>
         </div>
 
-        <!-- START SCORING BUTTON -->
+        <!-- GO SCORING BUTTON -->
         <div style="margin:5px 20px 5px 20px ">
             <button class="button button-outline button-block button-stable " style="color:black" ng-click="tabScrVM.goScoring() ">
-                start scoring
+                <div ng-if="tabScrVM.newGame == true"> Start new game</div>
+                <div ng-if="tabScrVM.newGame == false"> Return to existing game</div>
             </button>
         </div>
 

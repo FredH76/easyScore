@@ -55,7 +55,7 @@ angular.module('app.routes', [])
     })
 
     .state('score-sheet', {
-        cache: false,
+        cache: true,
         url: '/scoring',
         templateUrl: 'templates/score-sheet.html',
         controller: 'score-sheetCtrl',

@@ -8,6 +8,7 @@ angular.module('app.controllers')
     vm.selGame = GAME_LIST[0];
     vm.nbPlayerList = [];
     vm.nbPlayer = 4;
+    vm.newGame = true;
     var avatarList = [];
 
     /******************************      FUNCTION DECLARATION            ************************/
@@ -38,15 +39,19 @@ angular.module('app.controllers')
 
     /******************************         GO SCORING               ****************************/
     function goScoring() {
-        // reset playList
-        vm.playerList = [];
 
-        //reset avatar List
-        _initAvatarList();
+        if (vm.newGame) {
+            // reset playList
+            vm.playerList = [];
 
-        // create player list
-        for (var i = 1; i <= vm.nbPlayer; i++) {
-            addPlayer();
+            //reset avatar List
+            _initAvatarList();
+
+            // create player list
+            for (var i = 1; i <= vm.nbPlayer; i++) {
+                addPlayer();
+            }
+            vm.newGame = false;
         }
 
         var params = {
@@ -55,11 +60,12 @@ angular.module('app.controllers')
 
         };
         $state.go('score-sheet', params);
+
     }
 
     /******************************         RESET                     ***************************/
     function reset() {
-
+        vm.newGame = true;
     }
 
     /******************************         INIT GAME LIST             **************************/
