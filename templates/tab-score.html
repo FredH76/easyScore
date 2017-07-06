@@ -1,13 +1,13 @@
 <ion-view view-title="Score Board">
-    <!-- CONFIG BUTTON (in Nav Bar)-->
-    <ion-nav-buttons side="secondary">
-        <div class="buttons">
 
-            <!-- RESET BUTTON 
-            <button class="button button-stable button-outline " ng-click="tabScrVM.reset()">
-                &nbsp; Reset &nbsp;
-            </button>-->
-        </div>
+    <!-- NAV BAR : Right Button -->
+    <ion-nav-buttons side="right">
+
+        <!-- RESET BUTTON -->
+        <button class="button button-stable button-outline " ng-click="tabScrVM.reset()">
+            &nbsp; Reset &nbsp;
+        </button>
+
     </ion-nav-buttons>
 
     <ion-content>
@@ -38,7 +38,7 @@
 
         <!-- START SCORING BUTTON -->
         <div style="margin:5px 20px 5px 20px ">
-            <button class="button button-outline button-block button-stable " style="color:black" ng-click="tabScrVM.startScoring() ">
+            <button class="button button-outline button-block button-stable " style="color:black" ng-click="tabScrVM.goScoring() ">
                 start scoring
             </button>
         </div>
